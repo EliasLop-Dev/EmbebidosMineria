@@ -1,0 +1,17 @@
+function doGet(e) {
+  var sheet = SpreadsheetApp.getActiveSheet();
+
+  if (!e || !e.parameter) {
+    return ContentService.createTextOutput("No hay parámetros GET");
+  }
+
+  var ts      = e.parameter.ts || new Date().toISOString();
+  var lluvia  = e.parameter.lluvia || 0;
+  var lux     = e.parameter.lux || 0;
+  var viento  = e.parameter.viento || 0;
+  var temp    = e.parameter.temp || 0;
+  var humedad = e.parameter.humedad || 0;
+
+  sheet.appendRow([ts, lluvia, lux, viento, temp, humedad]);
+  return ContentService.createTextOutput("OK");
+}
